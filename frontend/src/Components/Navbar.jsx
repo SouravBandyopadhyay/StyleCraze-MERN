@@ -356,7 +356,7 @@ const NAV_ITEMS = [
       {
         label: "Exercises to Stay Fit",
         subLabel: "An exclusive list for workout",
-        href: "#",
+        href: "/fit",
       },
     ],
   },

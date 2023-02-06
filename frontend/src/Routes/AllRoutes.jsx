@@ -1,8 +1,9 @@
 import { Route, Routes } from "react-router-dom";
+import ExerciseDetail from "../Components/Exercise/ExerciseDetail";
 import ProductDetail from "../Components/ProductDetail";
-
 import Blog from "../Pages/Blog";
 import Cart from "../Pages/Cart";
+import ExercisePage from "../Pages/ExercisePage";
 import Healthwellness from "../Pages/HeatlhWellness";
 import HomePage from "../Pages/HomePage";
 import Makeup from "../Pages/Makeup";
@@ -23,7 +24,8 @@ function AllRoutes() {
         <Route path="/prod" element={<ProductPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-
+        <Route path="/fit" element={<ExercisePage />} />
+        <Route path="/fit/:id" element={<ExerciseDetail />} />
         {/* Protected Route */}
         <Route element={<ProtectedRoute />}>
           <Route path="/makeup/:id" element={<ProductDetail />} />

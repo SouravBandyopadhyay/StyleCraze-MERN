@@ -1,162 +1,90 @@
+// import { Stack, HStack, Link, Divider, Image, IconButton, LinkProps } from '@chakra-ui/react';
+// Here we have used react-icons package for the icons
 import {
-  Box,
-  Container,
-  SimpleGrid,
+  Link,
   Stack,
-  Text,
-  Button,
   HStack,
-  Icon,
-  VStack,
   Divider,
-  ListItem,
-  ListIcon,
-  List,Link
+  IconButton,
+  Image,
 } from "@chakra-ui/react";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
-import { PhoneIcon } from "@chakra-ui/icons";
-import { TbTruckDelivery, TbRefresh, TbHelp } from "react-icons/tb";
-import { MdGpsFixed } from "react-icons/md";
-import { FaCookie, FaPinterest, FaSnapchat } from "react-icons/fa";
-const ListHeader = ({ children }) => {
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+
+const links = [
+  "Blog",
+  "Documentation",
+  "Careers",
+  "Sign up",
+  "Terms of use",
+  "Privacy policy",
+];
+const accounts = [
+  {
+    url: "https://github.com/SouravBandyopadhyay",
+    label: "Github Account",
+    type: "gray",
+    icon: <FaGithub />,
+  },
+  {
+    url: "https://www.linkedin.com/in/souravbandyopadhyay/",
+    label: "LinkedIn Account",
+    type: "linkedin",
+    icon: <FaLinkedin />,
+  },
+];
+
+const Footer = () => {
   return (
-    <Text fontWeight={"500"} fontSize={"lg"} mb={2}>
-      {children}
-    </Text>
+    <Stack
+      maxW="5xl"
+      marginInline="auto"
+      p={8}
+      spacing={{ base: 8, md: 0 }}
+      justifyContent="space-between"
+      alignItems="center"
+      direction={{ base: "column", md: "row" }}
+    >
+      <Image w="100px" src="..." alt="StyleCraze" />
+      {/* Desktop Screen */}
+      <HStack spacing={4} alignItems="center" d={{ base: "none", md: "flex" }}>
+        {links.map((link, index) => (
+          <CustomLink key={index}>{link}</CustomLink>
+        ))}
+      </HStack>
+      <Stack
+        direction="row"
+        spacing={5}
+        pt={{ base: 4, md: 0 }}
+        alignItems="center"
+      >
+        {accounts.map((sc, index) => (
+          <IconButton
+            key={index}
+            as={Link}
+            isExternal
+            href={sc.url}
+            aria-label={sc.label}
+            colorScheme={sc.type}
+            icon={sc.icon}
+            rounded="md"
+          />
+        ))}
+      </Stack>
+    </Stack>
   );
 };
-export default function Footer() {
+
+const CustomLink = ({ children, ...props }) => {
   return (
-    <Box bottom="0">
-      <Container as={Stack} maxW={"6xl"} py={10}>
-        <SimpleGrid
-          templateColumns={{ sm: "1fr 1fr", md: "1fr 1fr" }}
-          spacing={8}
-        >
-          <VStack>
-            <Text pb=".5rem" fontWeight="600" fontSize="md">
-              Sign up to our email list and receive lastest Update
-            </Text>
-            <Button
-              fontWeight="600"
-              bgColor="black"
-              color="white"
-              borderRadius="md"
-              _hover={{
-                bg: "#FD8A8A",
-              }}
-            >
-              SIGN UP
-            </Button>
-          </VStack>
-          <VStack textAlign="left">
-            <Box textAlign="left" color="black">
-              <Text fontSize="md" fontWeight="600">
-                Connect with us
-              </Text>
-              <HStack gap={[2, 3, 4, 5]} p={2}>
-                <Icon
-                  boxSize={[4, 5, 6, 7]}
-                  as={FaFacebook}
-                  color="facebook.500"
-                />
-                <Icon
-                  boxSize={[4, 5, 6, 7]}
-                  as={FaTwitter}
-                  color="twitter.500"
-                />
-                <Icon
-                  boxSize={[4, 5, 6, 7]}
-                  as={FaSnapchat}
-                  color="yellow.400"
-                />
-                <Icon boxSize={[4, 5, 6, 7]} as={FaPinterest} color="red.700" />
-                <Icon boxSize={[4, 5, 6, 7]} as={FaInstagram} color="maroon" />
-              </HStack>
-            </Box>
-          </VStack>
-        </SimpleGrid>
-        {/* Top section uppper end */}
-        <SimpleGrid
-          templateColumns={{ sm: "1fr 1fr", md: "2fr 1fr 1fr 1fr" }}
-          spacing={8}
-        >
-          <Stack align={"flex-start"}>
-            <Divider mb="2" h="2" borderColor={"black"} />
-            <List>
-              <ListHeader> Help & Information</ListHeader>
-              <ListItem>
-                <HStack>
-                  <ListIcon as={PhoneIcon} fontSize="md" color="black.800" />
-                  <Text>Customer Service</Text>
-                </HStack>
-              </ListItem>
-              <ListItem>
-                <HStack>
-                  <ListIcon
-                    as={TbTruckDelivery}
-                    fontSize="md"
-                    color="black.800"
-                  />
-                  <Text>Delivery Information</Text>
-                </HStack>
-              </ListItem>
-              <ListItem>
-                <HStack>
-                  <ListIcon as={TbRefresh} fontSize="md" color="black.800" />
-                  <Text> Return & Refund</Text>
-                </HStack>
-              </ListItem>
-              <ListItem>
-                <HStack>
-                  <ListIcon as={TbHelp} fontSize="md" color="black.800" />
-                  <Text>Help Center</Text>
-                </HStack>
-              </ListItem>
-              <ListItem>
-                <HStack>
-                  <ListIcon
-                    as={MdGpsFixed}
-                    fontSize="1.2rem"
-                    color="black.800"
-                  />
-                  <Text>Track my order</Text>
-                </HStack>
-              </ListItem>
-              <ListItem>
-                <HStack>
-                  <ListIcon as={FaCookie} fontSize="1.2rem" color="black.800" />
-                  <Text>Cookie Setting</Text>
-                </HStack>
-              </ListItem>
-            </List>
-          </Stack>
-          <Stack align={"flex-start"}>
-            <Divider mb="2" h="2" borderColor={"black"} />
-            <ListHeader>Key Workers Discount</ListHeader>
-            <Link href={"#"}>About Us</Link>
-            <Link href={"#"}>Affilate Program</Link>
-            <Link href={"#"}>Brand Directory</Link>
-            <Link href={"#"}>Coupon Codes</Link>
-            <Link href={"#"}>Student Discount</Link>
-          </Stack>
-          <Stack align={"flex-start"}>
-            <Divider mb="2" h="2" borderColor={"black"} />
-            <ListHeader>Legal</ListHeader>
-            <Link href={"#"}>Cookie Information</Link>
-            <Link href={"#"}>Privacy Policy</Link>
-            <Link href={"#"}>Terms & Condition</Link>
-            <Link href={"#"}>Modern Slavery Statement</Link>
-          </Stack>
-          <Stack align={"flex-start"}>
-            <Divider mb="2" h="2" borderColor={"black"} />
-            <ListHeader> How To Contact Us</ListHeader>
-            <Link href={"#"}>Message Us</Link>
-            <Link href={"#"}>Free Beauty Consultations</Link>
-            <Link href={"#"}>Terms & Condition</Link>
-          </Stack>
-        </SimpleGrid>
-      </Container>
-    </Box>
+    <Link
+      href="#"
+      fontSize="sm"
+      _hover={{ textDecoration: "underline" }}
+      {...props}
+    >
+      {children}
+    </Link>
   );
-}
+};
+
+export default Footer;

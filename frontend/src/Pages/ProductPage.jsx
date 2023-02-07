@@ -1,12 +1,12 @@
 import { Box, Spinner, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Categories from "../Components/Categories";
 import SearchProduct from "../Components/Searching";
 import { filterPosts } from "../Redux/productsSlice";
 import Products from "../Components/Products";
-import Skeleton from "../Components/Skeleton";
 import { useGetAllProductsQuery } from "../Redux/productsApi";
+import Searching from "../Components/Searching";
 const ProductPage = () => {
   const { status } = useSelector((state) => state.products);
   const dispatch = useDispatch();
@@ -21,18 +21,35 @@ const ProductPage = () => {
       setFilter(true);
     }
   };
-  const { data } = useGetAllProductsQuery();
-
-  // search
+  // search Functionality
+  const [item, setItem] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
+  const handleAsync = async () => {
+    const res = await fetch("https://3y4mt2-8000.preview.csb.app/producs");
+    const data = res.json();
+    data
+      .then((res) => {
+        console.log(res);
+        setItem(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    setTimeout(() => {
+      handleAsync();
+    }, 500);
+    return () => clearTimeout(handleAsync);
+  }, []);
   const searchResult = () => {
     let filteredPosts;
     if (searchQuery) {
-      filteredPosts = data.filter((el) =>
-        el.name.toLowerCase().includes(searchQuery.toLowerCase())
+      filteredPosts = item.filter((post) =>
+        post.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
     return filteredPosts;
@@ -48,12 +65,17 @@ const ProductPage = () => {
             currentCategory={currentCategory}
             categoryChangeHandler={categoryChangeHandler}
           />
+          <Searching
+            value={searchQuery}
+            onChange={handleChange}
+            posts={item}
+            searchResult={searchResult()}
+            searchQuery={searchQuery}
+          />
           <Products filter={filter} />
         </Box>
       ) : status === "pending" ? (
         <>
-          {/* error in skeleton part */}
-          {/* <Skeleton /> */}
           <Spinner
             thickness="4px"
             speed="0.65s"

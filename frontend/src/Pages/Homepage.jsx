@@ -4,7 +4,8 @@ import {
   VStack,
   SimpleGrid,
   Heading,
-  Text
+  Text,
+  chakra,
 } from "@chakra-ui/react";
 import ArticleList from "../Components/Home/Blog";
 import HealthArticle from "../Components/Home/Health";
@@ -87,9 +88,9 @@ const HomePage = () => {
             </Text>
             <Text marginTop="4" fontWeight="600">
               Medically Reviewed by &#160;
-              <Text color="pink.400" display="inline-block">
+              <chakra.span color="pink.400" display="inline-block">
                 Dr. Shruti Chavan
-              </Text>
+              </chakra.span>
               , MBBS
             </Text>
           </Box>
@@ -121,9 +122,9 @@ const HomePage = () => {
 
               <Text marginTop="4" fontWeight="600">
                 Medically Reviewed by &#160;
-                <Text color="pink.400" display="inline-block">
+                <chakra.span color="pink.400" display="inline-block">
                   Dr. Jennifer Mercier,
-                </Text>
+                </chakra.span>
                 , ND, PhD
               </Text>
             </Box>
@@ -149,9 +150,9 @@ const HomePage = () => {
 
               <Text marginTop="4" fontWeight="600">
                 Medically Reviewed by &#160;
-                <Text color="pink.400" display="inline-block">
+                <chakra.span color="pink.400" display="inline-block">
                   Ghanima Abdullah
-                </Text>
+                </chakra.span>
                 , Cosmetologist
               </Text>
             </Box>
@@ -191,9 +192,9 @@ const HomePage = () => {
             </Text>
             <Text marginTop="1" fontWeight="500">
               Medically Reviewed by &#160;
-              <Text color="pink.400" display="inline-block">
+              <chakra.span color="pink.400" display="inline-block">
                 Dr.Jacob Wilson
-              </Text>
+              </chakra.span>
               , PhD, CSCS*D
             </Text>
           </Box>
@@ -210,9 +211,9 @@ const HomePage = () => {
             </Text>
             <Text marginTop="1" fontWeight="500">
               Medically Reviewed by &#160;
-              <Text color="pink.400" display="inline-block">
+              <chakra.span color="pink.400" display="inline-block">
                 Dr. Jill Carnahan
-              </Text>
+              </chakra.span>
               , MD, ABFM, ABIHM
             </Text>
           </Box>
@@ -229,9 +230,9 @@ const HomePage = () => {
             </Text>
             <Text marginTop="1" fontWeight="500" fontSize="md">
               Medically Reviewed by &#160;
-              <Text color="pink.400" display="inline-block">
+              <chakra.span color="pink.400" display="inline-block">
                 Dr. Pallavi Srivastava,
-              </Text>
+              </chakra.span>
               , PG Diploma in Sports Science & Fitness Nutrition
             </Text>
           </Box>
@@ -272,9 +273,9 @@ const HomePage = () => {
             </Text>
             <Text marginTop="4" fontWeight="600">
               Medically Reviewed by &#160;
-              <Text color="pink.400" display="inline-block">
+              <chakra.span color="pink.400" display="inline-block">
                 Dr. Shruti Chavan
-              </Text>
+              </chakra.span>
               , MBBS
             </Text>
           </Box>
@@ -306,9 +307,9 @@ const HomePage = () => {
 
               <Text marginTop="4" fontWeight="600">
                 Medically Reviewed by &#160;
-                <Text color="pink.400" display="inline-block">
+                <chakra.span color="pink.400" display="inline-block">
                   Dr. Jennifer Mercier,
-                </Text>
+                </chakra.span>
                 , ND, PhD
               </Text>
             </Box>
@@ -334,9 +335,9 @@ const HomePage = () => {
 
               <Text marginTop="4" fontWeight="600">
                 Medically Reviewed by &#160;
-                <Text color="pink.400" display="inline-block">
+                <chakra.span color="pink.400" display="inline-block">
                   Ghanima Abdullah
-                </Text>
+                </chakra.span>
                 , Cosmetologist
               </Text>
             </Box>

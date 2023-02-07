@@ -2,10 +2,11 @@ import { Box, Spinner, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Categories from "../Components/Categories";
-// import SearchProduct from "../Components/Searching";
+import SearchProduct from "../Components/Searching";
 import { filterPosts } from "../Redux/productsSlice";
 import Products from "../Components/Products";
 import Skeleton from "../Components/Skeleton";
+import { useGetAllProductsQuery } from "../Redux/productsApi";
 const ProductPage = () => {
   const { status } = useSelector((state) => state.products);
   const dispatch = useDispatch();
@@ -20,6 +21,22 @@ const ProductPage = () => {
       setFilter(true);
     }
   };
+  const { data } = useGetAllProductsQuery();
+
+  // search
+  const [searchQuery, setSearchQuery] = useState("");
+  const handleChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+  const searchResult = () => {
+    let filteredPosts;
+    if (searchQuery) {
+      filteredPosts = data.filter((el) =>
+        el.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    return filteredPosts;
+  };
   return (
     <Box>
       {status === "success" ? (
@@ -31,13 +48,12 @@ const ProductPage = () => {
             currentCategory={currentCategory}
             categoryChangeHandler={categoryChangeHandler}
           />
-          {/* <SearchProduct /> */}
-
           <Products filter={filter} />
         </Box>
       ) : status === "pending" ? (
         <>
-          <Skeleton />
+          {/* error in skeleton part */}
+          {/* <Skeleton /> */}
           <Spinner
             thickness="4px"
             speed="0.65s"

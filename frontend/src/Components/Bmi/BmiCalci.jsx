@@ -8,7 +8,8 @@ import {
   Image,
   Heading,
   HStack,
-  SimpleGrid
+  SimpleGrid,
+  useToast,
 } from "@chakra-ui/react";
 function BmiCheck() {
   const [weight, setWeight] = useState("");
@@ -16,59 +17,73 @@ function BmiCheck() {
   const [message, setMessage] = useState("");
   const [bmi, setBmi] = useState("");
   const [exe, setExe] = useState([]);
+  const toast = useToast();
   const calcBmi = (event) => {
-    event.preventDefault();
-    if (weight === 0 || height === 0) {
-      alert("Fill all the details");
-    } else {
-      let bmi = (weight / (height * height)) * 10000;
-      setBmi(bmi.toFixed(1));
-      if (bmi < 18.5) {
-        setMessage(
-          `Based on the height and weight entered, your BMI is ${bmi.toFixed(
-            1
-          )} indicating your weight is in the Under Weight for adults.`
-        );
-      } else if (bmi >= 18.5 && bmi < 25) {
-        setMessage(
-          `Based on the height and weight entered, your BMI is ${bmi.toFixed(
-            1
-          )} indicating your weight is in the Normal Weight for adults.`
-        );
-      } else if (bmi >= 25 && bmi < 30) {
-        setMessage(
-          `Based on the height and weight entered, your BMI is ${bmi.toFixed(
-            1
-          )} indicating your weight is in the Healthy Weight for adults.`
-        );
-      } else {
-        setMessage(
-          `Based on the height and weight entered, your BMI is ${bmi.toFixed(
-            1
-          )} indicating your weight is in the Obese for adults.`
-        );
-      }
-    }
-  };
-  const getData = async () => {
-    let res = await fetch("https://3y4mt2-8000.preview.csb.app/exercise");
-    let data = res.json();
-    data
-      .then((res) => {
-        // console.log(res);
-        setExe(res);
-      })
-      .catch((err) => {
-        console.log(err);
+    if(!height || !weight){
+      toast({
+        title: "Fill Details",
+        status: "error",
+        duration: 1000,
+        isClosable: true,
       });
+    }
+    event.preventDefault();
+    let bmi = (weight / (height * height)) * 10000;
+    setBmi(bmi.toFixed(1));
+    if (bmi < 18.5) {
+      setMessage(
+        `Based on the height and weight entered, your BMI is ${bmi.toFixed(
+          1
+        )} indicating your weight is in the Under Weight for adults.`
+      );
+      toast({
+        title: "Under Weight ",
+        status: "info",
+        duration: 1000,
+        isClosable: true,
+      });
+    }
+    if (bmi >= 18.5 && bmi < 25) {
+      setMessage(
+        `Based on the height and weight entered, your BMI is ${bmi.toFixed(
+          1
+        )} indicating your weight is in the Normal Weight for adults.`
+      );
+      toast({
+        title: "Normal Weight ",
+        status: "info",
+        duration: 1000,
+        isClosable: true,
+      });
+    }
+    if (bmi >= 25 && bmi < 30) {
+      setMessage(
+        `Based on the height and weight entered, your BMI is ${bmi.toFixed(
+          1
+        )} indicating your weight is in the Healthy Weight for adults.`
+      );
+      toast({
+        title: "Healthy Weight ",
+        status: "info",
+        duration: 1000,
+        isClosable: true,
+      });
+    }
+    if (bmi >= 30) {
+      setMessage(
+        `Based on the height and weight entered, your BMI is ${bmi.toFixed(
+          1
+        )} indicating your weight is in the Obese for adults.`
+      );
+      toast({
+        title: "Obese Weight ",
+        status: "info",
+        duration: 1000,
+        isClosable: true,
+      });
+    }
+    setHeight(""), setWeight("");
   };
-  const reload = () => {
-    window.location.reload();
-  };
-  useEffect(() => {
-    getData();
-  }, []);
-
   return (
     <div>
       <Text as="h2" fontWeight="bold" fontSize="3xl">
@@ -91,14 +106,14 @@ function BmiCheck() {
           <Box marginTop="2">
             <Input
               value={weight}
-              onChange={(e) => setWeight(e.target.value)}
+              onChange={(e) => setWeight(+e.target.value)}
               placeholder="Enter Your Weight in Kgs"
             />
           </Box>
           <Box marginTop="2">
             <Input
               value={height}
-              onChange={(el) => setHeight(el.target.value)}
+              onChange={(el) => setHeight(+el.target.value)}
               placeholder="Enter Your Height in cms"
             />
           </Box>
@@ -109,24 +124,11 @@ function BmiCheck() {
               color="white"
               borderRadius="md"
               _hover={{
-                bg: "#FD8A8A"
+                bg: "#FD8A8A",
               }}
               type="submit"
             >
               Submit
-            </Button>
-            <Button
-              fontWeight="600"
-              bgColor="black"
-              color="white"
-              borderRadius="md"
-              _hover={{
-                bg: "#FD8A8A"
-              }}
-              type="submit"
-              onClick={reload}
-            >
-              Reload
             </Button>
           </HStack>
         </form>
@@ -138,27 +140,6 @@ function BmiCheck() {
         </Box>
       </Box>
       {/* BMI APP ENDS*/}
-      <Heading marginTop="4">Some Recommended Exercise </Heading>
-      <SimpleGrid
-        padding="2"
-        marginTop="2"
-        gap="5"
-        gridTemplateColumns={["1fr", "1fr 1fr", "1fr 1fr 1fr 1fr 1fr"]}
-      >
-        {exe?.map((el, index) => (
-          <Box
-            key={index}
-            border="2px solid gray"
-            borderRadius="md"
-            textTransform="capitalize"
-            p={1}
-          >
-            <Text>Name:{el.name}</Text>
-            <Text>Type:{el.type}</Text>
-            <Text>Difficulty:{el.difficulty}</Text>
-          </Box>
-        ))}
-      </SimpleGrid>
     </div>
   );
 }

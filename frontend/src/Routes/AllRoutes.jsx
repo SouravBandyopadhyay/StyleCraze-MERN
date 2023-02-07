@@ -26,9 +26,10 @@ function AllRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/fit" element={<ExercisePage />} />
         <Route path="/fit/:id" element={<ExerciseDetail />} />
+        <Route path="/makeup/:id" element={<ProductDetail />} />
         {/* Protected Route */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/makeup/:id" element={<ProductDetail />} />
+        
           <Route path="/profile" element={<Profile />} />
           <Route path="/cart" element={<Cart />} />
         </Route>

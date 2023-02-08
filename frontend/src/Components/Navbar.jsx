@@ -281,9 +281,8 @@ const MobileNavItem = ({ label, children, href }) => {
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
-      <Flex
+      <NavLink
         py={2}
-        as={Link}
         to={href ?? "#"}
         justify={"space-between"}
         align={"center"}
@@ -306,7 +305,7 @@ const MobileNavItem = ({ label, children, href }) => {
             h={6}
           />
         )}
-      </Flex>
+      </NavLink>
 
       <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
         <Stack

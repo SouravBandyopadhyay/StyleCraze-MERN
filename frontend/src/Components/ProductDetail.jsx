@@ -5,12 +5,12 @@ import {
   chakra,
   Button,
   IconButton,
-  HStack
+  HStack,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useGetAllProductsQuery } from "../Redux/productsApi";
+// import { useGetAllProductsQuery } from "../Redux/productsApi";
 import { addToCart } from "../Redux/cartSlice";
 import { FaLock } from "react-icons/fa";
 const ProductDetail = () => {
@@ -29,8 +29,7 @@ const ProductDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.auth);
-  const { data, isLoading } = useGetAllProductsQuery();
-  // console.log("Api", isLoading);
+  // const { data, isLoading } = useGetAllProductsQuery();
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
@@ -47,7 +46,7 @@ const ProductDetail = () => {
     >
       <Box mx="auto" rounded="lg" shadow="md" bg="white" maxW="lg">
         <Image
-          roundedTop="lg"
+          borderRadius="md"
           w="full"
           fit="contain"
           src={item.image_src}
@@ -70,7 +69,7 @@ const ProductDetail = () => {
               fontSize="sm"
               color="gray.600"
               _dark={{
-                color: "gray.400"
+                color: "gray.400",
               }}
             >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Molestie
@@ -96,7 +95,7 @@ const ProductDetail = () => {
                   rounded="lg"
                   textTransform="uppercase"
                   _hover={{
-                    bg: "#FD8A8A"
+                    bg: "#FD8A8A",
                   }}
                   onClick={() => handleAddToCart(item)}
                 >

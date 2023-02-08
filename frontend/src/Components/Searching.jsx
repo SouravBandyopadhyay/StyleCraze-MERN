@@ -1,8 +1,6 @@
 import React from "react";
 import {
   Input,
-  InputGroup,
-  InputLeftElement,
   Box,
   Text,
   Avatar,
@@ -10,7 +8,10 @@ import {
   HStack,
   Flex,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 const Searching = ({ value, onChange, searchResult, searchQuery }) => {
+  const navigate = useNavigate();
+
   return (
     <Flex
       boxSized="full"
@@ -42,6 +43,10 @@ const Searching = ({ value, onChange, searchResult, searchQuery }) => {
                 margin="auto"
                 p={2}
                 spacing={2}
+                cursor="pointer"
+                onClick={() => {
+                  navigate(`/makeup/${id}`);
+                }}
               >
                 <Avatar size="sm" name={name} src={image_src} />
                 <Text key={id} fontSize={["sm", "md"]}>

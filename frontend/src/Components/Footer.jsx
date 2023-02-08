@@ -1,13 +1,4 @@
-// import { Stack, HStack, Link, Divider, Image, IconButton, LinkProps } from '@chakra-ui/react';
-// Here we have used react-icons package for the icons
-import {
-  Link,
-  Stack,
-  HStack,
-  Divider,
-  IconButton,
-  Image,
-} from "@chakra-ui/react";
+import { Link, Stack, HStack, IconButton, Image, Box } from "@chakra-ui/react";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const links = [
@@ -36,15 +27,21 @@ const accounts = [
 const Footer = () => {
   return (
     <Stack
-      maxW="5xl"
+      w="full"
       marginInline="auto"
       p={8}
       spacing={{ base: 8, md: 0 }}
       justifyContent="space-between"
       alignItems="center"
       direction={{ base: "column", md: "row" }}
+      height="max-content"
+      bg="blackAlpha.50"
     >
-      <Image w="100px" src="..." alt="StyleCraze" />
+      <Image
+        // objectFit="fit"
+        src="https://cdn2.stylecraze.com/wp-content/themes/buddyboss-child/images/sc-logo.png"
+        alt="StyleCraze"
+      />
       {/* Desktop Screen */}
       <HStack spacing={4} alignItems="center" d={{ base: "none", md: "flex" }}>
         {links.map((link, index) => (

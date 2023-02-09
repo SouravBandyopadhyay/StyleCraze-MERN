@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-const backendURL = "https://bugtracker-backend-iggq.onrender.com";
+const backendURL = "https://stylecraze-backend.onrender.com";
 export const userLogin = createAsyncThunk(
   "user/login",
   async ({ email, password }, { rejectWithValue }) => {

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
@@ -60,6 +60,7 @@ const Cart = () => {
       isClosable: true,
     });
   };
+
   return (
     <>
       {cart.cartItems.length === 0 ? (
@@ -83,7 +84,7 @@ const Cart = () => {
               {cart.cartItems &&
                 cart.cartItems.map((el) => (
                   <HStack
-                    key={el.id}
+                    key={el._id}
                     p={2}
                     justifyContent="space-between"
                     w="full"
@@ -93,7 +94,7 @@ const Cart = () => {
                       maxW="400px"
                       spacing={0}
                     >
-                      <Box ml="0 !important">
+                      <VStack ml="0 !important">
                         <Image
                           rounded="lg"
                           w={{ base: "100%", md: "18rem" }}
@@ -103,7 +104,10 @@ const Cart = () => {
                           alt="product image"
                           boxSize="150px"
                         />
-                      </Box>
+                        <Text fontSize={["xs", "sm"]} color="teal.700">
+                          {el.name}
+                        </Text>
+                      </VStack>
                       <Text textAlign="left">{el.title}</Text>
                     </HStack>
                     <Text fontWeight="bold">&#8377;{el.cost}</Text>
@@ -113,16 +117,22 @@ const Cart = () => {
                       aria-label="Call Sage"
                       fontSize="20px"
                       icon={<AddIcon />}
-                      onClick={() => handleAddToCart(el)}
+                      onClick={() => {
+                        handleAddToCart(el);
+                      }}
                     />
-                    <Text>{el.cartQuantity}</Text>
+                    <Text>
+                      {el.cartQuantity}/{el.quantity}
+                    </Text>
                     <IconButton
                       variant="outline"
                       colorScheme="teal"
                       aria-label="Call Sage"
                       fontSize="20px"
                       icon={<MinusIcon />}
-                      onClick={() => handleDecreaseCart(el)}
+                      onClick={() => {
+                        handleDecreaseCart(el);
+                      }}
                     />
                     <IconButton
                       colorScheme="red"

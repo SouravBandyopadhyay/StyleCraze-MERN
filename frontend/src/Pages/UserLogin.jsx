@@ -9,7 +9,7 @@ import {
   Link,
   Button,
   Heading,
-  useColorModeValue
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -58,7 +58,7 @@ export default function Login() {
                   {...register("email")}
                   type="email"
                   required
-                  placeholder="n@gmail.com"
+                  placeholder="brook@gmail.com"
                 />
               </FormControl>
               <FormControl id="password">
@@ -83,7 +83,7 @@ export default function Login() {
                   bg={"blue.400"}
                   color={"white"}
                   _hover={{
-                    bg: "blue.500"
+                    bg: "blue.500",
                   }}
                   type="submit"
                 >

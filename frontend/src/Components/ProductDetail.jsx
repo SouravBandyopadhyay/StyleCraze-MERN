@@ -6,6 +6,7 @@ import {
   Button,
   IconButton,
   HStack,
+  useToast,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +17,7 @@ import { FaLock } from "react-icons/fa";
 const ProductDetail = () => {
   const [item, setItem] = useState({});
   const params = useParams();
+  const toast = useToast();
   const url = `https://stylecraze-backend.onrender.com/prod/getprod/${params.id}`;
   // console.log(url);
   const getData = async () => {
@@ -32,6 +34,13 @@ const ProductDetail = () => {
   // const { data, isLoading } = useGetAllProductsQuery();
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
+    toast({
+      title: "Product Added ",
+      description: "We've added your Item into Cart.",
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+    });
   };
   useEffect(() => {
     getData();
@@ -82,9 +91,9 @@ const ProductDetail = () => {
           <Box mt={4}>
             {userInfo ? (
               <HStack gap="4" margin="auto" justifyContent="center">
-                <span fontWeight="bold" size="lg" color="gray.800">
+                <chakra.span fontWeight="bold" size="lg" color="gray.800">
                   &#8377; {item.cost}
-                </span>
+                </chakra.span>
                 <Button
                   bg="gray.800"
                   fontSize="xs"

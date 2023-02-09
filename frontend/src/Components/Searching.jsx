@@ -34,7 +34,7 @@ const Searching = ({ value, onChange, searchResult, searchQuery }) => {
 
         <UnorderedList w="full" p={2} borderRadius="md">
           {searchQuery &&
-            searchResult.map(({ id, name, image_src }) => (
+            searchResult.map(({ _id, name, image_src }) => (
               <HStack
                 width="full"
                 bg={"blue.50"}
@@ -45,11 +45,11 @@ const Searching = ({ value, onChange, searchResult, searchQuery }) => {
                 spacing={2}
                 cursor="pointer"
                 onClick={() => {
-                  navigate(`/makeup/${id}`);
+                  navigate(`/prod/getProd/${_id}`);
                 }}
               >
                 <Avatar size="sm" name={name} src={image_src} />
-                <Text key={id} fontSize={["sm", "md"]}>
+                <Text key={_id} fontSize={["sm", "md"]}>
                   {name}
                 </Text>
               </HStack>

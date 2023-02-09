@@ -12,7 +12,7 @@ export const productsFetch = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(
-        "https://3y4mt2-8000.preview.csb.app/producs"
+        "https://stylecraze-backend.onrender.com/prod/getprod"
       );
       return response.data;
     } catch (error) {

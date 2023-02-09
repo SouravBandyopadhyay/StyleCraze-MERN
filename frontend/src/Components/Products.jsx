@@ -53,7 +53,7 @@ const Products = ({ filter }) => {
               alignItems="center"
               p={4}
               mx="auto"
-              key={el.id}
+              key={el._id}
               pos="relative"
             >
               {el.brand && (
@@ -107,7 +107,7 @@ const Products = ({ filter }) => {
                   p={2}
                   w="full"
                 >
-                  <Link to={`/makeup/${el.id}`}> {el.name}</Link>
+                  <Link to={`getprod/${el._id}`}> {el.name}</Link>
                 </Text>
 
                 <Flex
@@ -162,7 +162,7 @@ const Products = ({ filter }) => {
               justifyContent="center"
               alignItems="center"
               mx="auto"
-              key={el.id}
+              key={el._id}
               p={4}
               pos="relative"
             >
@@ -215,7 +215,7 @@ const Products = ({ filter }) => {
                   fontSize="sm"
                   p={2}
                 >
-                  <Link to={`/makeup/${el.id}`}> {el.name}</Link>
+                  <Link to={`getprod/${el._id}`}> {el.name}</Link>
                 </Text>
 
                 <Flex

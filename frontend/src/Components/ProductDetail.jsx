@@ -16,7 +16,7 @@ import { FaLock } from "react-icons/fa";
 const ProductDetail = () => {
   const [item, setItem] = useState({});
   const params = useParams();
-  const url = `https://3y4mt2-8000.preview.csb.app/producs/${params.id}`;
+  const url = `https://stylecraze-backend.onrender.com/prod/getprod/${params.id}`;
   // console.log(url);
   const getData = async () => {
     let res = await fetch(url);

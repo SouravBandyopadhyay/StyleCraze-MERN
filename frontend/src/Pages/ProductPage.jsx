@@ -28,7 +28,7 @@ const ProductPage = () => {
     setSearchQuery(e.target.value);
   };
   const handleAsync = async () => {
-    const res = await fetch("https://3y4mt2-8000.preview.csb.app/producs");
+    const res = await fetch("https://stylecraze-backend.onrender.com/prod/getprod");
     const data = res.json();
     data
       .then((res) => {

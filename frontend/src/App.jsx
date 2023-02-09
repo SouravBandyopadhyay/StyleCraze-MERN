@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import "./App.css";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
@@ -7,8 +8,12 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <AllRoutes />
-      <Footer />
+      <Box minH="100vh" display="flex" flexDirection="column">
+        <AllRoutes />
+      </Box>
+      <Box marginTop="auto">
+        <Footer />
+      </Box>
     </div>
   );
 }

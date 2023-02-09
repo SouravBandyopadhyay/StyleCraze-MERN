@@ -1,4 +1,4 @@
-import { Link, Stack, HStack, IconButton, Image, Box } from "@chakra-ui/react";
+import { Link, Stack, HStack, IconButton, Image, Box, SimpleGrid } from "@chakra-ui/react";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const links = [
@@ -36,18 +36,18 @@ const Footer = () => {
       direction={{ base: "column", md: "row" }}
       height="max-content"
       bg="blackAlpha.50"
+      marginTop='2'
     >
       <Image
-        // objectFit="fit"
         src="https://cdn2.stylecraze.com/wp-content/themes/buddyboss-child/images/sc-logo.png"
         alt="StyleCraze"
       />
       {/* Desktop Screen */}
-      <HStack spacing={4} alignItems="center" d={{ base: "none", md: "flex" }}>
+      <SimpleGrid gridTemplateColumns={['1fr',"1fr 1fr","1fr 1fr 1fr 1fr 1fr 1fr"]} spacing={2} alignItems="center" d={{ base: "none", md: "flex" }}>
         {links.map((link, index) => (
           <CustomLink key={index}>{link}</CustomLink>
         ))}
-      </HStack>
+      </SimpleGrid>
       <Stack
         direction="row"
         spacing={5}
@@ -76,6 +76,7 @@ const CustomLink = ({ children, ...props }) => {
     <Link
       href="#"
       fontSize="sm"
+      letterSpacing="1.1px"
       _hover={{ textDecoration: "underline" }}
       {...props}
     >

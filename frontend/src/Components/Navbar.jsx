@@ -147,7 +147,7 @@ export default function Navbar() {
                     bg: "pink.300",
                   }}
                 >
-                  Sign In
+                  Sign Up
                 </Button>
               </NavLink>
               <NavLink to="/login">

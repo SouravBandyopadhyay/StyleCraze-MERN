@@ -110,7 +110,7 @@ const Cart = () => {
                       </VStack>
                       <Text textAlign="left">{el.title}</Text>
                     </HStack>
-                    <Text fontWeight="bold">&#8377;{el.cost}</Text>
+                    <Text fontWeight="bold">Price: &#8377;{el.cost}</Text>
                     <IconButton
                       variant="outline"
                       colorScheme="teal"
@@ -120,9 +120,16 @@ const Cart = () => {
                       onClick={() => {
                         handleAddToCart(el);
                       }}
+                      isDisabled={
+                        el.quantity === el.cartQuantity ? true : false
+                      }
                     />
-                    <Text>
-                      {el.cartQuantity}/{el.quantity}
+                    <Text
+                      font
+                      fontWeight="bold"
+                      color={el.quantity === el.cartQuantity ? "red" : "teal"}
+                    >
+                      Quantity:{el.cartQuantity}
                     </Text>
                     <IconButton
                       variant="outline"

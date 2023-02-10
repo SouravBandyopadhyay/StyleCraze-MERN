@@ -25,8 +25,10 @@ import {
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import { FaTrashAlt, FaArrowRight } from "react-icons/fa";
 import EmptyCart from "../Components/EmptyCart";
+import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const toast = useToast();
   const { cartTotalQuantity } = useSelector((state) => state.cart);
@@ -204,6 +206,7 @@ const Cart = () => {
                 marginTop="2"
                 width="full"
                 colorScheme="messenger"
+                    onClick={()=>{navigate('/checkout')}}
               >
                 Checkout &nbsp;
                 <Icon as={FaArrowRight} color="white" />

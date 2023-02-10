@@ -14,7 +14,7 @@ const Searching = ({ value, onChange, searchResult, searchQuery }) => {
 
   return (
     <Flex
-      boxSized="full"
+      boxSize="full"
       h="20vh"
       width="full"
       position="relative"
